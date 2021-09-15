@@ -1,23 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, useEffect} from 'react';
+import WeatherCards from './components/WeatherCards';
+import Search from './components/Search';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import SideBar from './components/SideBar';
+import AppBar from '@material-ui/core/AppBar';
 
 function App() {
+  const apiKey = 'db690c96c746078c5e6137873380815f';
+  const [city, setCity] = useState('miami');
+  const [weatherInfo, setWeatherInfo] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+  const urlCurrWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+  useEffect( () => {
+    fetch(urlCurrWeather)
+      .then(res => res.json())
+      .then(data => {
+        setWeatherInfo(data)
+        setIsLoaded(true)
+        console.log(weatherInfo)
+      })
+  }, [city, urlCurrWeather])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='Nav'>
+          <Search city={city} updateCity={setCity}/>
+      </div>
+      {/* the reason why I have isLoaded dictate if i should display my weather infomation is bc if its not load all of our code will
+      this is a safe guard to make sure everything is loaded */}
+      {(isLoaded) ? ( 
+        <div>
+          <div className='Sidebar'>
+              <h1>{weatherInfo.name}</h1>
+              <SideBar weather={weatherInfo} />
+          </div>
+          <WeatherCards weatherInfo={weatherInfo}/> 
+        </div>
+      ) : <CircularProgress />}
     </div>
   );
 }
