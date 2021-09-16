@@ -19,21 +19,21 @@ function WeatherCards({weatherInfo}) {
         <div>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 {weatherInfo.weather.map((day) => (
-                    <Card key={day.id} className={day.main.toLowerCase()}>
-                        <img src={weatherIcon(day)} alt='oh no'/>
+                    <Card key={day.id} className={day.main.toLowerCase()} raised>
+                        <img style={{height: '30vh', width: '30vh'}} src={weatherIcon(day)} alt='oh no'/>
                         <CardContent>
-                            <Typography>
+                            <Typography variant='h5'>
                                 {time.toUTCString()}
                             </Typography>
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                                <Typography style={{margin: '1vh'}}>
-                                    {kelvinToFarenheit(weatherInfo.main.temp_max)}
+                                <Typography variant='h5' style={{margin: '1vh'}}>
+                                    {kelvinToFarenheit(weatherInfo.main.temp_max)}&deg;F
                                 </Typography>
-                                <Typography style={{margin: '1vh'}}>
-                                    {kelvinToFarenheit(weatherInfo.main.temp_min)}
+                                <Typography variant='h5' style={{margin: '1vh'}}>
+                                    {kelvinToFarenheit(weatherInfo.main.temp_min)}&deg;F
                                 </Typography>
                             </div>
-                            <Typography>
+                            <Typography variant='h5'>
                                 {day.description}
                             </Typography>
                         </CardContent>

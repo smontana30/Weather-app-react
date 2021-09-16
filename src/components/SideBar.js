@@ -9,14 +9,14 @@ function SideBar({weather, index}) {
     }
 
     return (
-        <div>
-            <h4>Temp: {kelvinToFarenheit(weather.main.temp)}</h4>
-            <ul>
-                <li>Feels Like: {kelvinToFarenheit(weather.main.feels_like)}</li>
-                <li>Humidity: {weather.main.humidity}</li>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0vh'}}>
+            <h4 style={{fontSize: '14vh', fontWeight: 'normal'}}>{kelvinToFarenheit(weather.main.temp)}&deg;F</h4>
+            <ul style={{listStyleType: 'none', fontSize: '2.5vh'}}>
+                <li>Feels Like: {kelvinToFarenheit(weather.main.feels_like)}&deg;F</li>
+                <li>Humidity: {weather.main.humidity}%</li>
                 <li>Pressure: {weather.main.pressure}</li>
-                <li>Max temp: {kelvinToFarenheit(weather.main.temp_max)}</li>
-                <li>min temp: {kelvinToFarenheit(weather.main.temp_min)}</li>
+                <li>Max temp: {kelvinToFarenheit(weather.main.temp_max)}&deg;F</li>
+                <li>min temp: {kelvinToFarenheit(weather.main.temp_min)}&deg;F</li>
                 <li>Wind: {weather.wind.speed}</li>
                 <li>Sunrise: {sunRise.toUTCString()}</li>
                 <li>Sunset: {sunSet.toUTCString()}</li>
