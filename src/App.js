@@ -24,8 +24,9 @@ function App() {
   }, [city, urlCurrWeather])
 
   return (
-    <div className="App">
+    <div className="App" >
       <div className='Nav'>
+          <h1 style={{display: 'flex', justifySelf: 'flex-start'}}>Weather App</h1>
           <Search city={city} updateCity={setCity}/>
       </div>
       {/* the reason why I have isLoaded dictate if i should display my weather infomation is bc if its not load all of our code will
@@ -33,7 +34,6 @@ function App() {
       {(isLoaded) ? ( 
         <div>
           <div className='Sidebar'>
-              <h1>{weatherInfo.name}</h1>
               <SideBar weather={weatherInfo} />
           </div>
           <WeatherCards weatherInfo={weatherInfo}/> 
